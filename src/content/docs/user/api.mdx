@@ -1,0 +1,343 @@
+---
+title: API Routes
+next: false
+---
+import ApiRoute from '../../../components/ApiRoute.astro';
+export const responses = {
+  message: '{ message: string }',
+  messageWithId: '{ id: string, message: string }',
+  messageWithIdAndKey: '{ id: string, key: string, message: string }'
+}
+
+Developers can use the SnowCMS API to integrate the CMS into their website.
+
+## URL
+
+The base URL for the API is `https://{snowcms_instance}/api/`.
+
+## Authorization
+
+Send the API key in the `Authorization` header in the following format: `Bearer {key}`.
+
+:::note
+The API will take the lowest role between your API key and user account. A similar rule applies for websites. This is to ensure that if your role is lowered, or websites are removed, that your API keys reflect this change.
+:::
+
+## Data Format
+
+All requests and responses use JSON.
+
+If an error occurs, there may be a `error` property containing additional information.
+
+## Routes
+
+Any API routes not documented here should be considered internal, and not used.
+
+All types referenced below can be found on [GitHub](https://github.com/Binaryfrost/SnowCMS/tree/main/src/common/types).
+
+### Websites
+
+#### GET /websites
+
+<ApiRoute role="VIEWER" response="Website[]" />
+
+Returns all websites the user has access to.
+
+#### POST /websites
+
+<ApiRoute role="ADMIN" request="Omit<Website, 'id'>>" response={responses.messageWithId} />
+
+Creates a new website.
+
+#### GET /websites/:id
+
+<ApiRoute role="VIEWER" response="Website" />
+
+Returns the requested website, if it exists.
+
+#### PUT /websites/:id
+
+<ApiRoute role="SUPERUSER" request="Omit<Website, 'id'>>" response={responses.message} />
+
+Updates a website.
+
+#### DELETE /websites/:id
+
+<ApiRoute role="ADMIN" response={responses.message} />
+
+Deletes a website along with all related Media, Collections, and Collection Entries.
+
+### Accounts
+
+#### GET /accounts
+
+<ApiRoute role="ADMIN" response="UserWithWebsites[]" />
+
+Returns all users, along with the ID of websites that they have access to.
+
+#### POST /accounts
+
+<ApiRoute role="ADMIN" request="Omit<(DatabaseUser & UserWithWebsites), 'id'>" response={responses.messageWithId} />
+
+Creates a new account.
+
+#### GET /accounts/me
+
+<ApiRoute role="VIEWER" response="UserWithWebsites" />
+
+Returns information about the logged in user. For API keys, the email returned is `apikey@snowcms` and `active` is based on both the user and API key `active` state.
+
+#### GET /accounts/:userId
+
+<ApiRoute role="VIEWER*" response="UserWithWebsites" />
+
+Returns information about an account.
+
+\* Any authenticated user can view their own account information. Users with the `ADMIN` role can request any account.
+
+#### PUT /accounts/:userId
+
+<ApiRoute role="USER*" request="Omit<(DatabaseUser & UserWithWebsites), 'id'>**" response={responses.message} />
+
+Updates a user account.
+
+\* Users with the `USER` role can change the email and password for their own account. Users with the `ADMIN` role can change other properties for any user.
+
+\*\* The `password` field is optional, all other fields are required.
+
+#### DELETE /:userId
+
+<ApiRoute role="ADMIN" response={responses.message} />
+
+Deletes an account and all associated API keys.
+
+#### GET /:userId/keys
+
+<ApiRoute role="VIEWER*" response="ApiKeyWithWebsites[]" />
+
+Returns all API keys for user.
+
+\* Any authenticated user can view their own API keys. Users with the `ADMIN` role can request any account's API keys.
+
+#### POST /:userId/keys
+
+<ApiRoute role="USER*" request="Omit<ApiKeyWithWebsites, 'id'>"  response={responses.messageWithIdAndKey} />
+
+Creates an API key.
+
+\* User with the `USER` role or above can create their own API keys. Users with the `ADMIN` role can manage any account's API keys.
+
+#### GET /:userId/keys/:keyId
+
+<ApiRoute role="VIEWER*" response="ApiKeyWithWebsites" />
+
+Returns an API key.
+
+\* Any authenticated user can view their own API keys. Users with the `ADMIN` role can request any account's API keys.
+
+#### PUT /:userId/keys/:keyId
+
+<ApiRoute role="USER*" request="ApiKeyWithWebsites" response={responses.message} />
+
+Updates an API key.
+
+\* User with the `USER` role or above can manage their own API keys. Users with the `ADMIN` role can manage any account's API keys.
+
+#### POST /:userId/keys/:keyId/reset
+
+<ApiRoute role="USER*" response={responses.messageWithIdAndKey} />
+
+Resets an API key.
+
+\* User with the `USER` role or above can create their own API keys. Users with the `ADMIN` role can manage any account's API keys.
+
+#### DELETE /:userId/keys/:keyId
+
+<ApiRoute role="USER*" response={responses.message} />
+
+Deletes an API key.
+
+\* User with the `USER` role or above can delete their own API keys. Users with the `ADMIN` role can manage any account's API keys.
+
+### Collections
+
+#### GET /websites/:websiteId/collections
+
+<ApiRoute role="VIEWER" response="Collection[]" />
+
+Returns all Collections for a website.
+
+#### POST /websites/:websiteId/collections
+
+<ApiRoute role="SUPERUSER" request="Omit<Collection, 'id' | 'websiteId'>" response={responses.messageWithId} />
+
+Creates a Collection.
+
+#### GET /websites/:websiteId/collections/:id
+
+<ApiRoute role="VIEWER" response="Collection" />
+
+Returns a Collection.
+
+#### PUT /websites/:websiteId/collections/:id
+
+<ApiRoute role="SUPERUSER" request="Omit<Collection, 'id' | 'websiteId'>" response={responses.message} />
+
+Updates a Collection.
+
+#### DELETE /websites/:websiteId/collections/:id
+
+<ApiRoute role="SUPERUSER" response={responses.message} />
+
+Deletes a Collection and all Collection Entries it contains.
+
+### Collection Title
+
+#### GET /wesbites/:websiteId/colletions/:collectionId/title
+
+<ApiRoute role="VIEWER" response="CollectionTitle" />
+
+Returns the ID of the Collection Input used as the Collection's title.
+
+#### PUT /wesbites/:websiteId/colletions/:collectionId/title
+
+<ApiRoute role="SUPERUSER" response="Omit<CollectionTitle, 'collectionId'>" />
+
+Updates the ID of the Collection Input used as the Collection's title.
+
+### Collection Inputs
+
+#### GET /websites/:websiteId/collections/:collectionId/inputs
+
+<ApiRoute role="VIEWER" response="DatabaseCollectionInput[]" />
+
+Returns all Collection Inputs.
+
+#### POST /websites/:websiteId/collections/:collectionId/inputs
+
+<ApiRoute role="SUPERUSER" request="Omit<CollectionInput, 'id'>" response={responses.messageWithId} />
+
+Creates a Collection Input, ordering it after other Collection Inputs.
+
+#### PUT /websites/:websiteId/collections/:collectionId/inputs/:id
+
+<ApiRoute role="SUPERUSER" request="Omit<DatabaseCollectionInput, 'id'>" response={responses.message} />
+
+Updates a Collection Input.
+
+#### PATCH /websites/:websiteId/collections/:collectionId/inputs/:id/order
+
+<ApiRoute role="SUPERUSER" request="{ order: number }" response={responses.message} />
+
+Changes a Collection Input's order.
+
+:::caution
+You should ensure that this change does not result in non-consecutive ordering. For example, don't set the order to 10 if there are less than 10 inputs. Doing so may break future ordering operations.
+:::
+
+#### DELETE /websites/:websiteId/collections/:collectionId/inputs/:id
+
+<ApiRoute role="SUPERUSER" response={responses.message} />
+
+Deletes a Collection Input.
+
+### Collection Entries
+
+#### GET /websites/:websiteId/collections/:collectionId/entries
+
+<ApiRoute role="VIEWER" response="CollectionEntryWithTitle[]" />
+
+Returns all Collection Entries, along with the rendered title.
+
+#### GET /websites/:websiteId/collections/:collectionId/entries/:id
+
+<ApiRoute role="VIEWER" response="CollectionEntryWithData | CollectionEntryWithRenderedData" />
+
+Returns the Collection Entry.
+
+This route has two possible response types:
+
+##### Serialized Data
+
+Returns the Collection Entry as type `CollectionEntryWithData`.
+
+This type returns the serialized data for Collection Entry Inputs,
+as stored in the database and makes no attempt to render this data.
+
+This is the default.
+
+##### Rendered Data
+
+Returns the Collection Entry as type `CollectionEntryWithRenderedData`.
+
+This type returns the rendered data for Collection Entry Inputs, rendered to either an HTML string, a non-HTML string, or JSON. The return type depends on the Input.
+
+To get the rendered data, add the `?render=true` query parameter to the URL.
+
+#### POST /websites/:websiteId/collections/:collectionId/entries
+
+<ApiRoute role="USER" request="Record<string, string>" response={responses.messageWithId} />
+
+Creates a Collection Entry.
+
+The body should be an object where the key is the Field Name of the Collection Input, and the value is the serialized Input value.
+
+#### PATCH /websites/:websiteId/collections/:collectionId/entries/:id
+
+<ApiRoute role="USER" request="Record<string, string>" response={responses.message} />
+
+Updates a Collection Entry.
+
+The body should be an object where the key is the Field Name of the Collection Input, and the value is the serialized Input value.
+
+:::note
+The method for this API route does not accurately describe it's function. All required Collection Inputs must be present even if their values are unchanged. The method may be changed to `PUT` in the future.
+:::
+
+#### DELETE /websites/:websiteId/collections/:collectionId/entries/:id
+
+<ApiRoute role="USER" response={responses.message} />
+
+Deletes a Collection Input.
+
+### Media
+
+#### GET /websites/:websiteId/media
+
+<ApiRoute role="VIEWER" response="MediaWithUrls[]" />
+
+Returns all Media for a website, including the URL and thumbnail URL.
+
+#### GET /websites/:websiteId/media/config
+
+<ApiRoute role="VIEWER" response="MediaConfig" />
+
+Returns the Media config.
+
+#### GET /websites/:websiteId/media/:id
+
+<ApiRoute role="VIEWER" response="MediaWithUrls" />
+
+Returns a Media file, including the URL and thumbnail URL.
+
+#### POST /websites/:websiteId/media/upload
+
+<ApiRoute role="USER" request="FileMetadata" response="FileUploadResponse" />
+
+Request a pre-signed S3 upload URL.
+
+:::caution
+After uploading the file to S3, you must send a request to `/websites/:websiteId/media/upload/confirm` to add the file to the database. Failure to do so may result in the file being deleted from S3.
+:::
+
+#### POST /websites/:websiteId/media/upload/confirm
+
+<ApiRoute role="USER" request="FileUploadConfirmation" response={responses.messageWithId} />
+
+See `POST /websites/:websiteId/media/upload` above.
+
+#### DELETE /websites/:websiteId/media/:id
+
+<ApiRoute role="USER" response={responses.message} />
+
+Deletes a Media file.

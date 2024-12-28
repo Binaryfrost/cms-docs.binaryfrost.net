@@ -1,0 +1,47 @@
+---
+title: Hook Plugins
+---
+import { Code } from '@astrojs/starlight/components';
+import { FileTree } from '@astrojs/starlight/components';
+export const configCode = `import { defineHookPluginConfig } from 'snowcms/server';
+import examplePlugin from './example-plugin';
+
+export default defineHookPluginConfig({
+  plugins: [
+    examplePlugin
+  ]
+});`;
+export const pluginCode = `import { defineHookPlugin } from 'snowcms/server';
+
+export default defineHookPlugin({
+  name: 'test-hooks',
+  plugin: ({ logger }) => ({
+    serverStart: ({ port }) => {
+      logger.log(\`Server started on port \${port}\`);
+    },
+    beforeMediaCreateHook: ({ media }) => {
+      if (media.fileType === 'application/zip' || media.fileType === 'application/x-zip-compressed') {
+        throw new ExpressError('ZIP files are not allowed', 400);
+      }
+    }
+  })
+});`
+
+Hook plugins allow you to subscribe to events that occur on the CMS.
+
+Your hook plugins should be in `src/hooks`.
+
+<FileTree>
+- src
+  - hooks
+    - hooks.config.ts
+    - example-plugin.ts
+</FileTree>
+
+:::tip
+Route plugins run entirely server-side, so you are free to access the config file or database as needed.
+:::
+
+<Code code={pluginCode} lang="ts" title="example-plugin.ts" />
+
+<Code code={configCode} lang="ts" title="hooks.config.ts" />

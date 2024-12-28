@@ -1,0 +1,59 @@
+---
+title: Route Plugins
+---
+import { Code } from '@astrojs/starlight/components';
+import { FileTree } from '@astrojs/starlight/components';
+export const configCode = `import { defineRoutePluginConfig } from 'snowcms/server';
+import examplePlugin from './example-plugin';
+
+export default defineRoutePluginConfig({
+  plugins: [
+    examplePlugin
+  ]
+});`;
+export const pluginCode = `import { defineRoutePlugin } from 'snowcms/server';
+
+export default defineRoutePlugin({
+  name: 'test-plugin',
+  plugin: ({ logger }) => (router) => {
+    logger.log('Registering routes');
+
+    router.get('/custom-route', (req, res) => {
+      handleAccessControl(res, req.user, 'USER');
+
+      res.json({
+        message: 'Only users with the USER role and higher can access this route'
+      });
+    });
+
+    // Every async route handler that can throw an error must be wrapped in asyncRouteFix(). Failure to do so will result in the whole server crashing if the route errors.
+    router.get('/users', asyncRouteFix(async (req, res) => {
+      const users = await db()<User>('users')
+        .select('id');
+
+      res.json({
+        message: 'You can also access the database in routes',
+        users
+      });
+    }));
+  }
+});`
+
+Route plugins allow you to add custom routes to SnowCMS, registered at `/c/{route}`.
+
+Your route plugins should be in `src/routes`.
+
+<FileTree>
+- src
+  - routes
+    - routes.config.ts
+    - example-plugin.ts
+</FileTree>
+
+:::tip
+Hook plugins run entirely server-side, so you are free to access the config file or database as needed.
+:::
+
+<Code code={pluginCode} lang="ts" title="example-plugin.ts" />
+
+<Code code={configCode} lang="ts" title="hooks.config.ts" />

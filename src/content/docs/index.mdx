@@ -1,36 +1,38 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
+title: SnowCMS Docs
+description: SnowCMS is a headless, multi-tenant, extendable CMS.
 template: splash
+tableOfContents: false
 hero:
-  tagline: Congrats on setting up a new Starlight project!
-  image:
-    file: ../../assets/houston.webp
+  tagline: SnowCMS is a headless, multi-tenant, extendable CMS.
   actions:
-    - text: Example Guide
-      link: /guides/example/
+    - text: User Guide
+      link: /user/getting-started/
       icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
+    - text: Installation Guide
+      link: /admin/installation/
+      icon: right-arrow
+    - text: Support
+      link: https://binaryfrost.net/contact/
       icon: external
       variant: minimal
 ---
-
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Next steps
-
-<CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
-	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
-	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
-	</Card>
+<CardGrid>
+  <Card title="Headless" icon="pencil">
+    Unlike traditional CMSes, SnowCMS doesn't generate your whole website for you.
+    Instead, it lets you create your website the way you want and manage just the
+    content through the CMS.
+  </Card>
+  <Card title="Multi-tenant" icon="laptop">
+    Multiple websites can be managed through the same SnowCMS instance. This saves costs,
+    reduces maintenance, and makes rolling out updates much easier.
+  </Card>
+  <Card title="Extendable" icon="seti:pipeline">
+    You can add custom Inputs, subscribe to events, and create your own HTTP routes by writing a plugin.
+  </Card>
+  <Card title="Open Source" icon="github">
+    SnowCMS is open-source and released under the MIT license.
+  </Card>
 </CardGrid>

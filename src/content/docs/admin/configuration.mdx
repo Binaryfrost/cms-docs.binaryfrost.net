@@ -1,0 +1,15 @@
+---
+title: Configuration
+---
+import { Code } from '@astrojs/starlight/components';
+export const code = `import { defineConfig } from 'snowcms';
+
+export default defineConfig({
+  // Your config ...
+});`;
+
+A `snowcms.config.ts` file is required at the root directory.
+
+<Code code={code} lang="ts" title="snowcms.config.ts" />
+
+For more information, see the [Configuration Reference](/admin/reference/configuration-reference/).

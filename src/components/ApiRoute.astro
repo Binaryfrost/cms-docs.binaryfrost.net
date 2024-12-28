@@ -1,0 +1,29 @@
+---
+import { Code } from 'astro/components';
+
+interface Props {
+  role: string
+  request?: string
+  response: string
+}
+
+const { role, request, response } = Astro.props;
+---
+
+<p>
+  Required Role: <code>{role}</code>
+  <br />
+  {request && (
+    <>
+      Request Data: <code>{request}</code>
+      <br />
+    </>
+  )}
+  Response: <code>{response}</code>
+</p>
+
+<style>
+  p {
+    font-weight: bold;
+  }
+</style>

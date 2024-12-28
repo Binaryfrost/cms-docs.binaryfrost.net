@@ -1,0 +1,49 @@
+---
+title: Input Plugins
+---
+import { Code } from '@astrojs/starlight/components';
+import { FileTree } from '@astrojs/starlight/components';
+export const configCode = `import { defineInputPluginConfig } from 'snowcms';
+import examplePlugin from './example-plugin';
+
+export default defineInputPluginConfig({
+  plugins: [
+    examplePlugin
+  ]
+});`;
+export const pluginCode = `import { defineInputPlugin } from 'snowcms';
+
+type ValueType = string;
+interface SettingsType = {
+  required: boolean
+}
+
+export default defineInputPlugin<ValueType, SettingsType>({
+  name: 'example-plugin',
+  plugin: ({ logger }) => {
+    logger.log('This is an example plugin');
+
+    return {
+      // Your input ...
+    };
+  }
+});`
+
+Input plugins allow you to add custom Inputs to SnowCMS.
+
+Your Input plugins should be in `src/inputs`.
+
+<FileTree>
+- src
+  - inputs
+    - inputs.config.ts
+    - example-input.tsx
+</FileTree>
+
+:::danger
+Inputs are shared between the client and the server. Do not access any config or server-side APIs in Inputs, even on methods that are only called server-side. Doing so may leak sensitive config to the client.
+:::
+
+<Code code={pluginCode} lang="ts" title="example-plugin.tsx" />
+
+<Code code={configCode} lang="ts" title="inputs.config.ts" />
