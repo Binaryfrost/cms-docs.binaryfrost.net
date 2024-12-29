@@ -38,29 +38,29 @@ The Input type.
 
 ### ExpressError
 
-A simple error object that allows you to set the HTTP status code (defaults to 400).
+A simple error class that allows you to set the HTTP status code (defaults to 400).
 
 ## snowcms/server
 
 This module exports server-side code.
 
 :::danger
-Do not attempt to use module client-side or in Inputs. Doing so may leak sensitive config to the client.
+Do not attempt to use this module client-side or in Inputs. Doing so may leak sensitive config to the client.
 :::
-
-### defineHookPlugin
-
-Helper function to provide types to the hook plugin config file.
 
 ### defineHookPluginConfig
 
+Helper function to provide types to the hook plugin config file.
+
+### defineHookPlugin
+
 Helper function to provide types to hook plugins.
 
-### defineRoutePlugin
+### defineRoutePluginConfig
 
 Helper function to provide types to the route plugin config file.
 
-### defineRoutePluginConfig
+### defineRoutePlugin
 
 Helper function to provide types to route plugins.
 
