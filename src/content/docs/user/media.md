@@ -9,7 +9,7 @@ By default, each file can be up to 50MB and each website can contain up to 5GB o
 On the Media page, and when selecting files in a Collection Entry, you can see all files uploaded to your website. The icons below each file allow you to get the file URL or delete it.
 
 :::note
-Some files may be hidden when selecting files in a Collection Entry a your website administrator may only allow specific file types to be selected.
+Some files may be hidden when selecting files in a Collection Entry as your website administrator may only allow specific file types to be selected.
 :::
 
 ### Uploading Files
