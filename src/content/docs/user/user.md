@@ -24,7 +24,7 @@ Be careful when deleting API keys. Any code using that API key will stop working
 
 You can create API keys to allow your website to fetch content from the CMS, or to write code that automates actions (such as creating a post at a specific time).
 
-These API keys can be scoped to a specific website and set it's role to your own role or lower.
+These API keys can be scoped to a specific website and set its role to your own role or lower.
 
 Be sure to copy the API key after creating it. The full API key will only be shown once.
 
