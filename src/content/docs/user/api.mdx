@@ -11,6 +11,10 @@ export const responses = {
 
 Developers can use the SnowCMS API to integrate the CMS into their website.
 
+:::caution
+The API is intended to be accessed server-side. Do not attempt to access it client-side as doing so will allow anyone to use your API key to request all data for your website from the CMS.
+:::
+
 ## URL
 
 The base URL for the API is `https://{snowcms_instance}/api/`.
@@ -22,6 +26,23 @@ Send the API key in the `Authorization` header in the following format: `Bearer 
 :::note
 The API will take the lowest role between your API key and user account. A similar rule applies for websites. This is to ensure that if your role is lowered, or websites are removed, that your API keys reflect this change.
 :::
+
+```js
+// example.js
+
+const resp = await fetch('https://cms.example.com/api/users/me', {
+	headers: {
+		// This is an example API key, replace it with your own
+		Authorization: `Bearer a:0194134c-9634-70b3-84c5-a6349eb92273.cCtoXUrQ6TjL3OlHMcpa-oxmiDkJHUQBaF6XKyVxi3c'
+	}
+});
+
+if (resp.status !== 200) {
+	// Handle error
+} else {
+	// Use data
+}
+```
 
 ## Data Format
 
