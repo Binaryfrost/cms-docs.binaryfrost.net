@@ -20,7 +20,7 @@ Sets the maximum length of values. Setting to 0 disables the length limit.
 
 ### Required
 
-If true, the user must create at least one value before saving the Collection Entry.
+If true, the user must add at least one value before saving the Collection Entry.
 
 ## API Response
 

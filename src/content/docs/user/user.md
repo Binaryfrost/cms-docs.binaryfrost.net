@@ -10,6 +10,26 @@ Here you can change your email address or password, and create API keys.
 
 While you can see your role and websites, only admins can change these.
 
+## Roles
+
+Higher roles inherit permissions from lower roles. For example, the `SUPERUSER` role has all the permissions from the `USER` role.
+
+### Viewer
+
+The `VIEWER` role is similar to the `USER` role, but cannot edit anything.
+
+### User
+
+Users with the `USER` role can add, edit, and remove Collection Entries and Media for all Collections in all websites that they have access to.
+
+### Superuser
+
+Users with the `SUPERUSER` role can add, edit, and remove Collections. They can also edit a website's name and deploy hook.
+
+### Admin
+
+Users with the `ADMIN` role can add, edit, and remove websites and users.
+
 ## API Keys
 
 API keys are used for websites and other code to interact with SnowCMS.

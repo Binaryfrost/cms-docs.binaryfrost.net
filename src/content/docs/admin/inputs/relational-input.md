@@ -16,4 +16,4 @@ If true, the user has to select a Collection Entry.
 
 ## API Response
 
-The file's CDN URL will be returned.
+The referenced Collection Entry will be returned.

@@ -44,6 +44,8 @@ Your Input plugins should be in `src/inputs`.
 Inputs are shared between the client and the server. Do not access any config or server-side APIs in Inputs, even on methods that are only called server-side. Doing so may leak sensitive config to the client.
 :::
 
+See the [Inputs Reference](/admin/reference/inputs-reference/) for additional information on how to create an Input.
+
 <Code code={pluginCode} lang="ts" title="example-plugin.tsx" />
 
 <Code code={configCode} lang="ts" title="inputs.config.ts" />

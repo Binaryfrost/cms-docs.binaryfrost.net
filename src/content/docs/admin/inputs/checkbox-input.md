@@ -1,5 +1,5 @@
 ---
-title: Array Input
+title: Checkbox Input
 ---
 
 The Checkbox Input adds a checkbox to the CMS editor.

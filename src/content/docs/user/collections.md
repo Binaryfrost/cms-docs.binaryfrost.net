@@ -2,7 +2,7 @@
 title: Collections
 ---
 
-Collections are groups of structured data that you can edit through the CMS. You could have a `Blog` collection for blog posts, a `Features` collection for product features, etc.
+Collections are groups of structured data that you can edit through the CMS. You could have a `Blog` Collection for blog posts, a `Features` Collection for product features, etc.
 
 ![Collections](../../../assets/docs/user/collections.png)
 

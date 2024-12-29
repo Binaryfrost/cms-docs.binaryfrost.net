@@ -8,7 +8,7 @@ The Array Input allows users to set multiple Inputs of a specific type.
 
 ### Input
 
-Sets the Input by it's internal ID.
+Sets the Input by its internal ID.
 
 ### Max Inputs
 

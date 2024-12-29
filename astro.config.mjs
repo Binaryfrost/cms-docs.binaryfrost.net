@@ -42,6 +42,7 @@ export default defineConfig({
             'user/websites',
             'user/collections',
             'user/collection-entries',
+			'user/media',
             'user/user',
             'user/api'
           ]

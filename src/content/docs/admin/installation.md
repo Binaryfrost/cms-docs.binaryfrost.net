@@ -8,6 +8,10 @@ SnowCMS is designed to be completely separated from your website: the only commu
 npm install snowcms
 ```
 
+:::note
+You should read the User Guide before installing SnowCMS as it contains important information for both users and admins.
+:::
+
 ## Requirements
 
 - Node v20 or later (only LTS versions are supported)
