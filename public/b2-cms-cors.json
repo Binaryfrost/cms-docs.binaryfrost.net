@@ -1,0 +1,36 @@
+[
+  {
+    "allowedHeaders": [
+      "authorization",
+      "range"
+    ],
+    "allowedOperations": [
+      "b2_download_file_by_id",
+      "b2_download_file_by_name"
+    ],
+    "allowedOrigins": [
+      "*"
+    ],
+    "corsRuleName": "downloadFromAnyOrigin",
+    "exposeHeaders": null,
+    "maxAgeSeconds": 3600
+  },
+  {
+    "allowedHeaders": [
+      "authorization",
+      "range",
+      "content-type"
+    ],
+    "allowedOperations": [
+      "s3_head",
+      "s3_get",
+      "s3_put"
+    ],
+    "allowedOrigins": [
+      "*"
+    ],
+    "corsRuleName": "s3DownloadFromAnyOrigin",
+    "exposeHeaders": null,
+    "maxAgeSeconds": 3600
+  }
+]

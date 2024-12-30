@@ -86,7 +86,11 @@ The maximum storage per website. Optional, defaults to 5368709120 (5GB).
 
 **Type**: `object`
 
-S3 configuration
+S3 configuration. You can use any S3-compatible storage.
+
+:::note
+As Media uploads use pre-signed PUT URLs, you will need to ensure that your bucket has the appropriate CORS configuration. If you're using Backblaze B2, [this CORS policy](/b2-cms-cors.json) can be applied using the B2 CLI.
+:::
 
 #### endpoint
 
