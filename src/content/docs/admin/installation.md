@@ -17,3 +17,5 @@ You should read the User Guide before installing SnowCMS as it contains importan
 - Node v20 or later (only LTS versions are supported)
 - Text editor with TypeScript support (Visual Studio Code is recommended)
 - A Linux server with at least 1GB memory and 1 vCPU is recommended
+- MySQL
+- Redis
