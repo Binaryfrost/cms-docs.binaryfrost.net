@@ -5,7 +5,7 @@ title: Installation
 SnowCMS is designed to be completely separated from your website: the only communication between the two is over HTTP(S). It has been published on NPM to make it easy to install configure.
 
 ```sh
-npm install snowcms
+npm install @binaryfrost/snowcms
 ```
 
 :::note
