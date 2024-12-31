@@ -3,7 +3,7 @@ title: Input Plugins
 ---
 import { Code } from '@astrojs/starlight/components';
 import { FileTree } from '@astrojs/starlight/components';
-export const configCode = `import { defineInputPluginConfig } from 'snowcms';
+export const configCode = `import { defineInputPluginConfig } from '@binaryfrost/snowcms';
 import examplePlugin from './example-plugin';
 
 export default defineInputPluginConfig({
@@ -11,7 +11,7 @@ export default defineInputPluginConfig({
     examplePlugin
   ]
 });`;
-export const pluginCode = `import { defineInputPlugin } from 'snowcms';
+export const pluginCode = `import { defineInputPlugin } from '@binaryfrost/snowcms';
 
 type ValueType = string;
 interface SettingsType = {

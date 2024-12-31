@@ -3,7 +3,7 @@ title: Hook Plugins
 ---
 import { Code } from '@astrojs/starlight/components';
 import { FileTree } from '@astrojs/starlight/components';
-export const configCode = `import { defineHookPluginConfig } from 'snowcms/server';
+export const configCode = `import { defineHookPluginConfig } from '@binaryfrost/snowcms/server';
 import examplePlugin from './example-plugin';
 
 export default defineHookPluginConfig({
@@ -11,7 +11,7 @@ export default defineHookPluginConfig({
     examplePlugin
   ]
 });`;
-export const pluginCode = `import { defineHookPlugin } from 'snowcms/server';
+export const pluginCode = `import { defineHookPlugin } from '@binaryfrost/snowcms/server';
 
 export default defineHookPlugin({
   name: 'test-hooks',

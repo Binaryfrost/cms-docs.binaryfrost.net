@@ -4,7 +4,7 @@ title: Package Exports
 
 The NPM module has some exports to enable customizing the CMS.
 
-## snowcms
+## @binaryfrost/snowcms
 
 This module exports code shared between the client and the server. Not all exports can be used on both sides.
 
@@ -40,7 +40,7 @@ The Input type.
 
 A simple error class that allows you to set the HTTP status code (defaults to 400).
 
-## snowcms/server
+## @binaryfrost/snowcms/server
 
 This module exports server-side code.
 

@@ -3,7 +3,7 @@ title: Route Plugins
 ---
 import { Code } from '@astrojs/starlight/components';
 import { FileTree } from '@astrojs/starlight/components';
-export const configCode = `import { defineRoutePluginConfig } from 'snowcms/server';
+export const configCode = `import { defineRoutePluginConfig } from '@binaryfrost/snowcms/server';
 import examplePlugin from './example-plugin';
 
 export default defineRoutePluginConfig({
@@ -11,7 +11,7 @@ export default defineRoutePluginConfig({
     examplePlugin
   ]
 });`;
-export const pluginCode = `import { defineRoutePlugin } from 'snowcms/server';
+export const pluginCode = `import { defineRoutePlugin } from '@binaryfrost/snowcms/server';
 
 export default defineRoutePlugin({
   name: 'test-plugin',
