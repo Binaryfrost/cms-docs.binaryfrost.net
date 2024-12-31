@@ -8,9 +8,13 @@ npx snowcms {command}
 
 If no accounts exist in the database, an account with the `ADMIN` role will be created. The login details for this account will be logged to the console.
 
+:::tip
+Anti-virus software can prevent the build command from working. If this happens, either temporarily disable the anti-virus software or add an exclusion.
+:::
+
 ## dev
 
-Creates a development build and starts a server. Whenever changes are made, the frontend and/or server will be reloaded.
+Creates a development build and starts a server. Whenever changes are made, the frontend and/or server will be reloaded. A WebSocket server will be started on `config.port + 1` which is used to notify the front-end of changes.
 
 ## build
 
