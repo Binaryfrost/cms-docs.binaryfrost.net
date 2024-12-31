@@ -38,11 +38,9 @@ All `before*` hooks (except for `beforeWebsiteHookCalled`) can throw an error to
 
 **Type** : `(hook: BeforeAfterMediaHook) => void`
 
-/** Called server-side before a POST request is sent to the website hook */
 ## beforeWebsiteHookCalled
 
 **Type** : `(hook: BeforeWebsiteHookCalledHook) => void`
-
 
 ## beforeWebsiteCreateHook
 
@@ -68,7 +66,6 @@ All `before*` hooks (except for `beforeWebsiteHookCalled`) can throw an error to
 
 **Type** : `(hook: { website: Website }) => void`
 
-
 ## beforeCollectionCreateHook
 
 **Type** : `(hook: { collection: Collection }) => void`
@@ -93,7 +90,6 @@ All `before*` hooks (except for `beforeWebsiteHookCalled`) can throw an error to
 
 **Type** : `(hook: { collection: Collection }) => void`
 
-
 ## beforeCollectionInputCreateHook
 
 **Type** : `(hook: { collectionInput: CollectionInput }) => void`
@@ -117,7 +113,6 @@ All `before*` hooks (except for `beforeWebsiteHookCalled`) can throw an error to
 ## afterCollectionInputDeleteHook
 
 **Type** : `(hook: { collectionInput: CollectionInput }) => void`
-
 
 ## beforeCollectionEntryCreateHook
 
