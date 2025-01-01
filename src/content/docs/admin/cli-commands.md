@@ -20,7 +20,7 @@ Creates a development build and starts a server. Whenever changes are made, the 
 
 Creates a production build at `dist`. It will also copy all dependencies required for production.
 
-To run the CMS, set your working directory to `dist/server` and run `node server.mjs`. In a production setup, you should use a process manager such as PM2.
+To run the CMS, set your working directory to `dist/server` and run `node server.js`. In a production setup, you should use a process manager such as PM2.
 
 :::tip
 Make sure the system running the build runs the same (or a similar) operating system to the one that runs the CMS as some dependencies make use of native modules.
