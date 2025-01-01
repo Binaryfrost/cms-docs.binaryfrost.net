@@ -18,6 +18,10 @@ Clicking the file upload button will open a file uploader modal. Here, you can c
 
 Only one file may be uploaded at a time, and large file uploads may take a long time to finish.
 
+:::caution
+Do not upload confidential or otherwise sensitive files, as files can be accessed by anyone who has the URL. If you need to share such files through your website, contact your website developer to discuss development of a secure file sharing solution.
+:::
+
 #### Blocked File Types
 
 The following [media types](https://en.wikipedia.org/wiki/Media_type) are blocked.
