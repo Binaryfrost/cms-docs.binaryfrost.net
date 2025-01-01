@@ -26,7 +26,9 @@ Secret used for signing HMACs and encrypting SSO cookie
 
 **Type**: `object`
 
-SSO configuration, optional
+SSO configuration, optional.
+
+If set, the `trustProxy` must also be set to avoid issues.
 
 ### clientId
 
@@ -173,3 +175,7 @@ MySQL password
 **Type**: `RedisClientOptions`
 
 Redis configuration
+
+## trustProxy
+
+[Express "trust proxy"](https://expressjs.com/en/guide/behind-proxies.html). Usually optional, required if SSO is configured.
