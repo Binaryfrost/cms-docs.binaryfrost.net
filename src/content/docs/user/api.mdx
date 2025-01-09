@@ -15,6 +15,34 @@ Developers can use the SnowCMS API to integrate the CMS into their website.
 The API is intended to be accessed server-side. Do not attempt to access it client-side as doing so will allow anyone to use your API key to request all data for your website from the CMS.
 :::
 
+:::tip
+If all you need to do is get Collection Entries, you can use the Node.js client which can be used with or without TypeScript.
+
+```ts
+// example.ts
+import { SnowCMSClient } from '@binaryfrost/snowcms-client';
+
+// These are example values, replace them with your own
+const cmsUrl = 'https://cms.example.com';
+const websiteId = '019423b3-4185-7aac-b956-85fa3d0d7486';
+const blogCollectionId = '019423b3-6ef2-7aac-b956-8bea5c18db17';
+const apikey = 'a:0194134c-9634-70b3-84c5-a6349eb92273.cCtoXUrQ6TjL3OlHMcpa-oxmiDkJHUQBaF6XKyVxi3c';
+
+const client = new SnowCMSClient(cmsUrl, websiteId, apiKey);
+
+interface BlogPost {
+  title: string
+  slug: string
+  draft: boolean
+  content: string
+}
+
+const posts = await client.getCollectionEntries<BlogPost>(blogCollectionId);
+const filteredPosts = posts.filter(post => !post.data.draft);
+// ...
+```
+:::
+
 ## URL
 
 The base URL for the API is `https://{snowcms_instance}/api/`.
