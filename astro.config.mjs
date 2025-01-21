@@ -41,8 +41,14 @@ export default defineConfig({
             'user/glossary',
             'user/websites',
             'user/collections',
+            {
+              label: 'Inputs',
+              autogenerate: {
+                directory: 'inputs'
+              }
+            },
             'user/collection-entries',
-			'user/media',
+			      'user/media',
             'user/user',
             'user/api'
           ]
@@ -56,10 +62,6 @@ export default defineConfig({
             'admin/configuration',
             'admin/cli-commands',
             'admin/package-exports',
-            {
-              label: 'Inputs',
-              autogenerate: { directory: 'admin/inputs' }
-            },
             {
               label: 'Plugins',
               autogenerate: { directory: 'admin/plugins' }

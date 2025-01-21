@@ -37,8 +37,23 @@ interface BlogPost {
   content: string
 }
 
-const posts = await client.getCollectionEntries<BlogPost>(blogCollectionId);
-const filteredPosts = posts.filter(post => !post.data.draft);
+// Returns 10 at a time by default
+const paginatedQuery = client.getCollectionEntries<BlogPost>(blogCollectionId);
+
+// This example fetches all the pages; if you're using SSR, you shouldn't do this
+const pages = await paginatedQuery.getPages();
+const entriesPages = [];
+for (let page = 1; page <= pages; page++) {
+  entriesPages.push(paginatedQuery.goToPage(page));
+}
+
+const entries = await Promise.all(entriesPages);
+
+const entriesWithData = (await Promise.all(
+  entries
+    .map((e) => client.getCollectionEntriesData(e))
+    .filter(post => !post.data.draft);
+)).flat();
 // ...
 ```
 :::
@@ -78,6 +93,13 @@ All requests and responses use JSON.
 
 If an error occurs, there may be a `error` property containing additional information.
 
+## Pagination
+
+Some API routes are paginated, as indicated by the `PaginatedResponse` type. For these routes, the following query parameters can be passed to control pagination:
+
+- `page`: The page you want to request; optional and defaults to 1
+- `limit`: The number of entries per page, can be between 1 and 100; optional and defaults to 10
+
 ## Routes
 
 Any API routes not documented here should be considered internal, and not used.
@@ -88,7 +110,7 @@ All types referenced below can be found on [GitHub](https://github.com/Binaryfro
 
 #### GET /websites
 
-<ApiRoute role="VIEWER" response="Website[]" />
+<ApiRoute role="VIEWER" response="PaginatedResponse<Website>" />
 
 Returns all websites the user has access to.
 
@@ -120,7 +142,7 @@ Deletes a website along with all related Media, Collections, and Collection Entr
 
 #### GET /accounts
 
-<ApiRoute role="ADMIN" response="UserWithWebsites[]" />
+<ApiRoute role="ADMIN" response="PaginatedResponse<UserWithWebsites>" />
 
 Returns all users, along with the ID of websites that they have access to.
 
@@ -162,7 +184,7 @@ Deletes an account and all associated API keys.
 
 #### GET /:userId/keys
 
-<ApiRoute role="VIEWER*" response="ApiKeyWithWebsites[]" />
+<ApiRoute role="VIEWER*" response="PaginatedResponse<ApiKeyWithWebsites>" />
 
 Returns all API keys for user.
 
@@ -212,7 +234,7 @@ Deletes an API key.
 
 #### GET /websites/:websiteId/collections
 
-<ApiRoute role="VIEWER" response="Collection[]" />
+<ApiRoute role="VIEWER" response="PaginatedResponse<Collection>" />
 
 Returns all Collections for a website.
 
@@ -294,7 +316,7 @@ Deletes a Collection Input.
 
 #### GET /websites/:websiteId/collections/:collectionId/entries
 
-<ApiRoute role="VIEWER" response="CollectionEntryWithTitle[]" />
+<ApiRoute role="VIEWER" response="PaginatedResponse<CollectionEntryWithTitle>" />
 
 Returns all Collection Entries, along with the rendered title.
 
@@ -353,7 +375,7 @@ Deletes a Collection Input.
 
 #### GET /websites/:websiteId/media
 
-<ApiRoute role="VIEWER" response="MediaWithUrls[]" />
+<ApiRoute role="VIEWER" response="PaginatedResponse<MediaWithUrls>" />
 
 Returns all Media for a website, including the URL and thumbnail URL.
 
