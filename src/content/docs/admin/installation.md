@@ -19,3 +19,7 @@ You should read the User Guide before installing SnowCMS as it contains importan
 - A Linux server with at least 1GB memory and 1 vCPU is recommended
 - MySQL
 - Redis
+
+:::tip
+Don't want to manage a SnowCMS instance yourself? We offer [managed SnowCMS hosting](https://binaryfrost.net/products/snowcms/).
+:::
