@@ -14,6 +14,8 @@ In the types below, `T` refers to the Input type and `S` refers to the Input Set
 
 Input ID, must be unique and should include your plugin name for namespacing purposes. Shown in the Collection settings.
 
+Can be up to 255 bytes.
+
 :::caution
 You should not change this after using the Input as doing so will result in null being returned anywhere where this Input is used.
 :::
@@ -34,7 +36,9 @@ Description shown for this input in the Collection settings. Optional.
 
 **Type**: `(data: T) => string`
 
-Called before sending data to server (client-side only)
+Called before sending data to server (client-side only).
+
+Can be up to 16,777,215 bytes.
   
 ### deserialize
 
@@ -80,7 +84,9 @@ Called client-side to render settings in Collection settings.
 
 **Type**: `(data: S) => string`
 
-Serializes settings to a string
+Serializes settings to a string.
+
+Can be up to 65,535 bytes.
 
 ### deserializeSettings
 
