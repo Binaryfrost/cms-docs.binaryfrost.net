@@ -1,8 +1,11 @@
 ---
 title: Slug Input
 ---
+import InputExample from '../../../components/InputExample.astro';
 
 The Slug Input generates a slug based on another field.
+
+<InputExample image="slug" />
 
 ## Settings
 
@@ -17,6 +20,10 @@ The maximum length of the slug.
 ### Required
 
 If true, this Input needs to have a value.
+
+### Before
+
+If set, this value will be prepended to the slug with the placeholder values replaced.
 
 ## API Response
 
