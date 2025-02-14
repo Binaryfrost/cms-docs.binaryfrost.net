@@ -262,20 +262,6 @@ Updates a Collection.
 
 Deletes a Collection and all Collection Entries it contains.
 
-### Collection Title
-
-#### GET /wesbites/:websiteId/colletions/:collectionId/title
-
-<ApiRoute role="VIEWER" response="CollectionTitle" />
-
-Returns the ID of the Collection Input used as the Collection's title.
-
-#### PUT /wesbites/:websiteId/colletions/:collectionId/title
-
-<ApiRoute role="SUPERUSER" response="Omit<CollectionTitle, 'collectionId'>" />
-
-Updates the ID of the Collection Input used as the Collection's title.
-
 ### Collection Inputs
 
 #### GET /websites/:websiteId/collections/:collectionId/inputs
@@ -344,6 +330,12 @@ Returns the Collection Entry as type `CollectionEntryWithRenderedData`.
 This type returns the rendered data for Collection Entry Inputs, rendered to either an HTML string, a non-HTML string, or JSON. The return type depends on the Input.
 
 To get the rendered data, add the `?render=true` query parameter to the URL.
+
+#### GET /websites/:websiteId/collections/:collectionId/entries/slug/*
+
+Retrieves a Collection Entry by its slug instead of its ID.
+
+See [GET /websites/:websiteId/collections/:collectionId/entries/:id](#get-websiteswebsiteidcollectionscollectionidentriesid).
 
 #### POST /websites/:websiteId/collections/:collectionId/entries
 
