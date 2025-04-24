@@ -8,6 +8,8 @@ For instructions on how to configure SnowCMS, see [Configuration](/admin/configu
 It is recommended to use environmental variables for sensitive information instead of hard-coding strings into the config.
 :::
 
+The public path for assets can be set using the `CLIENT_PUBLIC_PATH` environmental variable for CDN integration. Doing so will also add a preconnect tag to the page.
+
 All configuration options are required unless otherwise stated.
 
 ## port
