@@ -8,6 +8,10 @@ By default, each file can be up to 50MB and each website can contain up to 5GB o
 
 On the Media page, and when selecting files in a Collection Entry, you can see all files uploaded to your website. The icons below each file allow you to get the file URL or delete it.
 
+:::caution
+Deleting a file will break existing links and cause images or documents to stop displaying where they're used. Before deleting, make sure the file isn't currently used in the CMS or linked from anywhere else.
+:::
+
 ![Media](../../../assets/docs/user/media.png)
 
 :::note

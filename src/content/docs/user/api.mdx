@@ -304,7 +304,7 @@ Deletes a Collection Input.
 
 <ApiRoute role="VIEWER" response="PaginatedResponse<CollectionEntryWithTitle>" />
 
-Returns all Collection Entries, along with the rendered title.
+Returns all Collection Entries, along with their titles.
 
 #### GET /websites/:websiteId/collections/:collectionId/entries/:id
 
@@ -362,6 +362,46 @@ The method for this API route does not accurately describe it's function. All re
 <ApiRoute role="USER" response={responses.message} />
 
 Deletes a Collection Input.
+
+### Drafts
+
+#### GET /websites/:websiteId/collections/:collectionId/drafts
+
+<ApiRoute role="VIEWER" response="PaginatedResponse<CollectionEntryDraftSummary>" />
+
+Returns all drafts, along with their titles.
+
+#### GET /websites/:websiteId/collections/:collectionId/drafts/:id
+
+<ApiRoute role="VIEWER" response="CollectionEntryDraftWithData" />
+
+Returns the draft.
+
+#### POST /websites/:websiteId/collections/:collectionId/drafts
+
+<ApiRoute role="USER" request="Record<string, string>" response={responses.messageWithId} />
+
+Creates a draft.
+
+The body should be an object where the key is the Field Name of the Collection Input, and the value is the serialized Input value.
+
+All fields, even required ones, are optional in this route. The only validation performed is ensuring that all field names passed in the object exist.
+
+#### PUT /websites/:websiteId/collections/:collectionId/drafts/:id
+
+<ApiRoute role="USER" request="Record<string, string>" response={responses.message} />
+
+Updates a draft.
+
+The body should be an object where the key is the Field Name of the Collection Input, and the value is the serialized Input value.
+
+All fields, even required ones, are optional in this route. The only validation performed is ensuring that all field names passed in the object exist.
+
+#### DELETE /websites/:websiteId/collections/:collectionId/drafts/:id
+
+<ApiRoute role="USER" response={responses.message} />
+
+Deletes a draft.
 
 ### Media
 
