@@ -40,6 +40,20 @@ The Input type.
 
 A simple error class that allows you to set the HTTP status code (defaults to 400).
 
+### useInputValidator
+
+A hook that registers your validator function, runs it as needed, and returns any errors
+either as a string or object, depending on your validation function's return type.
+
+The error returned will be null if there are no errors.
+
+### useSettingsHandler
+
+A hook that handles settings changes and merges the
+initial and current settings.
+
+Returns the merged settings and a change function.
+
 ## @binaryfrost/snowcms/server
 
 This module exports server-side code.

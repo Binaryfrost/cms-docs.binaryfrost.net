@@ -48,9 +48,36 @@ Called before rendering input and HTML (client and server side)
 
 ### renderInput
 
-**Type**: `() => ForwardRefExoticComponent<InputProps<T, S> & RefAttributes<InputRef<T>>> | FunctionComponent<InputProps<T, S>> | undefined`
+**Type**: `FunctionComponent<InputProps<T, S>>`
 
-Called client-side to render input in CMS; remember to call useImperativeHandle with InputRef object if the Input has a value. The Collection Input name and description will be passed as props.
+Called client-side to render input in CMS. The following props are passed:
+- name
+- fieldName
+- description
+- settings
+- value
+- values
+- onChange
+- registerValidator
+- unregisterValidator
+
+:::tip
+The `useInputValidator` hook makes error handling easy. This hook automatically registers a
+validator function with the CMS, ensuring that the Input's value is validated prior to
+saving a Collection Entry.
+
+```ts
+// Example, taken from the Text Input
+const { maxLength, required } = settings;
+const error = useInputValidator((v) => {
+  if (required && !v) return `${name} is required`;
+  if (maxLength && maxLength !== 0 && v.length > maxLength) {
+    return `${name} has a maximum length of ${maxLength}`;
+  }
+  return null;
+}, registerValidator, unregisterValidator);
+```
+:::
 
 ### isAllowed
 
@@ -76,26 +103,30 @@ An input can optionally have settings.
 
 ### renderSettings
 
-**Type**: `() => ForwardRefExoticComponent<SettingsProps<S> & RefAttributes<InputRef<S>>>`
+**Type**: `FunctionComponent<SettingsProps<S>>`
 
-Called client-side to render settings in Collection settings.
+Called client-side to render settings in Collection settings. The following props are passed:
+- settings
+- onChange
+- registerValidator
+- unregisterValidator
 
-### serializeSettings
+:::tip
+It is recommended to use the `useInputValidator` hook (see [renderInput](#renderinput)
+for an example). You should also use the `useSettingsHandler` as this simplifies
+setting handling by ensuring that all settings have a value and exposes a helper
+function for updating a setting.
 
-**Type**: `(data: S) => string`
-
-Serializes settings to a string.
-
-Can be up to 65,535 bytes.
-
-### deserializeSettings
-
-**Type**: `(data: string) => S`
-
-Deserializes settings from a string.
+```ts
+const [merged, changeSetting] = useSettingsHandler({
+  maxLength: 0,
+  required: true
+}, settings, onChange);
+```
+:::
 
 ### validateSettings
 
-**Type**: `(serializedSettings: string, deserialize: InputWithSettings<T, S>['deserializeSettings'], req: Request) => void | Promise<void>`
+**Type**: `(settings: S, req: Request) => void | Promise<void>`
 
 Called server-side to ensure that the input value is valid. You should throw an error if it is invalid. Optional.
