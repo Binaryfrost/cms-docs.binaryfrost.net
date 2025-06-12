@@ -101,6 +101,14 @@ Called server-side when page is requested through API with the query parameter `
 
 An input can optionally have settings.
 
+### defaultSettings
+
+**Type**: `S`
+
+Default settings that will be merged with the configured settings before being
+passed to `renderInput` and `renderSettings`. Other methods will continue to
+receive only the configured settings to ensure proper setting validation.
+
 ### renderSettings
 
 **Type**: `FunctionComponent<SettingsProps<S>>`
