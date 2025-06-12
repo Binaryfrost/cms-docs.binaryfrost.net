@@ -122,14 +122,10 @@ Called client-side to render settings in Collection settings. The following prop
 :::tip
 It is recommended to use the `useInputValidator` hook (see [renderInput](#renderinput)
 for an example). You should also use the `useSettingsHandler` as this simplifies
-setting handling by ensuring that all settings have a value and exposes a helper
-function for updating a setting.
+setting handling by exposing a helper function for updating a setting.
 
 ```ts
-const [merged, changeSetting] = useSettingsHandler({
-  maxLength: 0,
-  required: true
-}, settings, onChange);
+const changeSetting = useSettingsHandler(settings, onChange);
 ```
 :::
 
