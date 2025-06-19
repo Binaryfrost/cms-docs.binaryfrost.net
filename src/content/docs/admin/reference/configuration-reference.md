@@ -62,9 +62,15 @@ If enabled, the login form will be disabled and all logins will be handled using
 
 ### defaultRole
 
-**Type**: `Role`
+**Type**: `Role | null`
 
-If no account exists in SnowCMS with the user's email, a new one will be created with this role. Optional, defaults to `USER`.
+If no account exists in SnowCMS with the user's email, a new one will be created with this role. If set to null, a new user will not be created. Optional, defaults to `USER`.
+
+### buttonText
+
+**Type**: `string`
+
+Text shown on the SSO login button. Optional, defaults to "Log in with SSO".
 
 ## media
 

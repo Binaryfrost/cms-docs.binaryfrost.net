@@ -15,3 +15,7 @@ When creating a new Collection Entry or editing an existing one, you can choose 
 Drafts are not visible on your website until they are published, making them ideal for staging new content or preparing updates for review.
 - New drafts (not based on existing entries) create a new Collection Entry with a new creation date when published.
 - Drafts based on existing entries will update that entry when published, keeping the original entry ID but updating its content.
+
+## Backdating Entries
+
+If backdating is enabled in the Collection settings, you may select a date and time in the past when creating a new Collection Entry, or publishing a draft. The selected date will replace the default creation date, making it easier to migrate content from legacy systems while preserving the original timestamps.
