@@ -25,7 +25,7 @@ export default defineConfig({
           tag: 'script',
           attrs: {
             async: true,
-            src: 'https://cdn-a.binaryfrost.net/umami/umami.js',
+            src: 'https://cdn.websitestatic.com/umami/umami.js',
             'data-website-id': '21148965-4071-43dd-af7d-2b5309fc4ffa',
             'data-host-url': 'https://umami.binaryfrost.net',
             'data-domains': 'cms-docs.binaryfrost.net'
