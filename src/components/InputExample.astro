@@ -1,13 +1,17 @@
 ---
-import { Card } from '@astrojs/starlight/components';
-import { imageMetadata } from 'astro/assets/utils';
 import { Image } from 'astro:assets';
+
+const CAPTIONS = {
+  input: 'Example of this Input in use',
+  settings: 'Example of this Input\'s settings'
+};
 
 interface Props {
   image: string
+  isSetting?: boolean
 }
 
-const { image } = Astro.props;
+const { image, isSetting = false } = Astro.props;
 const IMAGE_BASE = '/src/assets/docs/user/inputs/';
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/docs/user/inputs/*.png');
 const img = images[`${IMAGE_BASE}${image}.png`];
@@ -16,7 +20,7 @@ if (!img) throw new Error(`Image ${image} does not exist in ${IMAGE_BASE}`);
 
 <figure>
   <Image src={img()} alt="Input screenshot" />
-  <figcaption>Example of this Input in use</figcaption>
+  <figcaption>{isSetting ? CAPTIONS.settings : CAPTIONS.input}</figcaption>
 </figure>
 
 <style>
@@ -26,8 +30,13 @@ if (!img) throw new Error(`Image ${image} does not exist in ${IMAGE_BASE}`);
     border-radius: 0.5rem;
   }
 
+  figure img {
+    margin: auto;
+  }
+
   figcaption {
     font-size: small;
     margin-top: 0 !important;
+    text-align: center;
   }
 </style>
