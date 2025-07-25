@@ -137,7 +137,7 @@ S3 secret access key
 The URL that media assets will be accessed through. Ensure that this is publicly accessible without authorization.
 
 :::note
-Changes to the `publicUrl` will reflect in the [Media Input](/admin/inputs/media-input/), but not any other Inputs.
+Changes to the `publicUrl` will reflect in the [Media Input](/inputs/media-input/), but not any other Inputs.
 :::
 
 ## database

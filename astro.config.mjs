@@ -41,18 +41,18 @@ export default defineConfig({
             'user/glossary',
             'user/websites',
             'user/collections',
-            {
-              label: 'Inputs',
-              autogenerate: {
-                directory: 'inputs'
-              }
-            },
             'user/collection-entries',
 			      'user/media',
             'user/user',
             'user/api'
           ]
 				},
+        {
+          label: 'Inputs',
+          autogenerate: {
+            directory: 'inputs'
+          }
+        },
 				{
 					label: 'Admin Guide',
           collapsed: true,
