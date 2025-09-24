@@ -32,6 +32,13 @@ Name shown for this input in the Collection settings.
 
 Description shown for this input in the Collection settings. Optional.
 
+### isVisualOnly
+
+**Type**: `boolean`
+
+Whether this Input is a visual-only Input. If true, `serialize`, `deserialize` and `validate` are
+ignored, and the Input cannot be marked as required.
+
 ### serialize
 
 **Type**: `(data: T) => string`
@@ -87,7 +94,7 @@ Called client-side to determine whether to show in input library and server-side
 
 ### validate
 
-**Type**: `(serializedValue: string, deserialize: BaseInput<T, S>['deserialize'], settings: S | null, req: Request) => void | Promise<void>`
+**Type**: `(serializedValue: string, required: boolean, settings: S | null, req: Request) => void | Promise<void>`
 
 Called server-side to ensure that the input value is valid. You should throw an error if it is invalid. Optional.
 
@@ -105,9 +112,7 @@ An input can optionally have settings.
 
 **Type**: `S`
 
-Default settings that will be merged with the configured settings before being
-passed to `renderInput` and `renderSettings`. Other methods will continue to
-receive only the configured settings to ensure proper setting validation.
+Default settings that will be merged with the configured settings.
 
 ### renderSettings
 
